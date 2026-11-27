@@ -569,31 +569,43 @@ function renderConversationList() {
 
     sortedChats.forEach(chat => {
 
+        const item = document.createElement("div");
+
+        item.className = "history-item";
+
+        if (chat.id === currentConversation.id) {
+            item.classList.add("active");
+        }
+
         item.innerHTML = `
-    <span>${chat.pinned ? "📌" : ""} ${chat.title}</span>
+        <span>
+            ${chat.pinned ? "📌" : ""}
+            ${chat.title}
+        </span>
 
-    <div class="history-actions">
+        <div class="history-actions">
 
-        <button
-            class="pin-btn"
-            data-id="${chat.id}">
-            ${chat.pinned ? "📌" : "📍"}
-        </button>
+            <button
+                class="pin-btn"
+                data-id="${chat.id}">
+                ${chat.pinned ? "📌" : "📍"}
+            </button>
 
-        <button
-            class="delete-btn"
-            data-id="${chat.id}">
-            🗑
-        </button>
+            <button
+                class="delete-btn"
+                data-id="${chat.id}">
+                🗑
+            </button>
 
-    </div>
-`;
+        </div>
+    `;
 
         item.addEventListener("click", () => {
             loadConversation(chat.id);
         });
 
         list.appendChild(item);
+
     });
 
     attachDeleteEvents();
@@ -719,13 +731,19 @@ deleteModal.addEventListener("click", function (event) {
 // Attach delete button events to conversation list
 function attachDeleteEvents() {
 
+    console.log("Attach delete events");
+
     document
         .querySelectorAll(".delete-btn")
         .forEach(button => {
 
+            console.log("Found delete button");
+
             button.addEventListener(
                 "click",
-                function (event) {
+                function(event) {
+
+                    console.log("DELETE CLICKED");
 
                     event.stopPropagation();
 
@@ -735,9 +753,7 @@ function attachDeleteEvents() {
 
                 }
             );
-
         });
-
 }
 
 // ==========================================
