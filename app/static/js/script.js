@@ -2259,17 +2259,6 @@ function showDestinationRecommendations() {
     startDestinationRotation();
 }
 
-
-newChatBtn.addEventListener("click", function () {
-
-    // Clear the previous conversation
-    // Keep your existing new chat code here
-
-    // Show destination recommendations
-    showDestinationRecommendations();
-
-});
-
 /* =========================================
    VOICE INPUT - SPEECH TO TEXT
    ========================================= */
